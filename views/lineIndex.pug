@@ -4,10 +4,10 @@ block headContent
   script(type='text/javascript', src="javascripts/lineIndex.js")
 
 block content
-  h2 All available lines deatail here.
-
   //modal starts-------------------------
-  button(type='button', data-toggle='modal', class='btn btn-primary', data-target='#addLineModal') Add Line
+  div
+    button(type='button', data-toggle='modal', class='btn btn-primary', data-target='#addLineModal', style='float:right;') Add Line
+  h3 All Available lines
   div(class='modal', id='addLineModal')
     div.modal-dialog
       .modal-content

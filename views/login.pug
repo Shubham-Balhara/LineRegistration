@@ -1,8 +1,12 @@
-extends layout
-
-block content
-    h1=title
-    form(action="users/login", method='post',name='form1', onsubmit="return validateForm(this.name)")
+html
+    head
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
+        script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+        script(type='text/javascript', src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    body
+        .container
+            h1=title
+            form(action="users/login", method='post',name='form1', onsubmit="return validateForm(this.name)")
                 .form-group
                 label(for="username") Username: 
                 input(type="text", name="username", class='form-control', required)
