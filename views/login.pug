@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    h1=title
+    form(action="users/login", method='post',name='form1', onsubmit="return validateForm(this.name)")
+                .form-group
+                label(for="username") Username: 
+                input(type="text", name="username", class='form-control', required)
+                div
+                    p(id='form1username', class='text-danger')
+                .form-group
+                label(for="password") Password: 
+                input(type="password", name="password", class='form-control', required)
+                div
+                    p(id='form1password', class='text-danger')
+                input(type="submit", value="Submit" class='btn btn-success mr-3')
+                input(type="reset", value="Reset" class='btn btn-warning')

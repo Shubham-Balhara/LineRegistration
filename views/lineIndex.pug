@@ -1,0 +1,140 @@
+extends layout
+
+block headContent
+  script(type='text/javascript', src="javascripts/lineIndex.js")
+
+block content
+  h2 All available lines deatail here.
+
+  //modal starts-------------------------
+  button(type='button', data-toggle='modal', class='btn btn-primary', data-target='#addLineModal') Add Line
+  div(class='modal', id='addLineModal')
+    div.modal-dialog
+      .modal-content
+        div.modal-header
+          h4.modal-title Add Line
+          button(type='button', class='close', data-dismiss='modal') &times;
+        
+        .modal-body
+          form(action="line/add", method='post',name='form1', onsubmit="return validateForm(this.name)")
+            .form-group
+              label(for="lineId") LineId: 
+              input(type="text", name="lineId", class='form-control', required, maxlength='4')
+              div
+                p(id='form1lineId', class='text-danger')
+            .form-group
+              label(for="lineName") LineName: 
+              input(type="text", name="lineName", class='form-control', maxlength='10', required)
+              div
+                p(id='form1lineName', class='text-danger')
+            .form-group
+              label(for="width") width: 
+              input(type="text", name="width", class='form-control', required)
+              div
+                p(id='form1width', class='text-danger')
+            .form-group
+              label(for="height") height: 
+              input(type="text", name="height", class='form-control', required)
+              div
+                p(id='form1height', class='text-danger')
+            .form-group
+              label(for="lineDirection") lineDirection:
+              select(name="lineDirection", class='form-control custom-select', required)
+                option(value="R2L") R->L
+                option(value='L2R') L->R
+            .form-group
+              label(for="lane") lane: 
+              select(name="lane", class='form-control custom-select', required)
+                option(value="SINGLE") SINGLE
+                option(value='DUAL') DUAL
+            .form-group
+              label(for="type") type: 
+              select(name="type", class='form-control custom-select', required)
+                option(value="REAL") REAL
+                option(value='VIRTUAL') VIRTUAL
+            input(type="submit", value="Submit" class='btn btn-success mr-3')
+            input(type="reset", value="Reset" class='btn btn-warning')
+
+        .modal-footer
+          button(type='button', class='btn btn-danger', data-dismiss='modal') Close
+  // modal ends--------------------------
+
+  //update modal starts------------------
+  div(class='modal', id='updateLineModal')
+    div.modal-dialog
+      .modal-content
+        div.modal-header
+          h4.modal-title Update Line
+          button(type='button', class='close', data-dismiss='modal') &times;
+        
+        .modal-body
+          form(action="line/edit", method='post', name='form2', onsubmit='return validateForm(this.name)')
+            .form-group
+              label(for="lineId") LineId: 
+              input(type="text", name="lineId", id="lineId", class='form-control', required, readonly)
+              div
+                p(id='form1lineId', class='text-danger')
+            .form-group
+              label(for="lineName") LineName: 
+              input(type="text", name="lineName", id="lineName", class='form-control', required, maxlength='10')
+              div
+                p(id='form1lineName', class='text-danger')
+            .form-group
+              label(for="width") width: 
+              input(type="text", name="width", id="width", class='form-control', required)
+              div
+                p(id='form1width', class='text-danger')
+            .form-group
+              label(for="height") height: 
+              input(type="text", name="height", id="height", class='form-control', required)
+              div
+                p(id='form1height', class='text-danger')
+            .form-group
+              label(for="lineDirection") lineDirection:
+              select(name="lineDirection", id="lineDirection", class='form-control custom-select', required)
+                option(value="R2L") R->L
+                option(value='L2R') L->R
+            .form-group
+              label(for="lane") lane: 
+              select(name="lane", id="lane", class='form-control custom-select', required)
+                option(value="SINGLE") SINGLE
+                option(value='DUAL') DUAL
+            .form-group
+              label(for="type") type: 
+              select(name="type", id="type", class='form-control custom-select', required)
+                option(value="REAL") REAL
+                option(value='VIRTUAL') VIRTUAL
+            input(type="submit", value="Update" class='btn btn-success mr-3')
+            button(class="btn btn-warning", id='reset', onclick="getLine(this.value)", type='reset') Reset
+
+        .modal-footer
+          button(type='button', class='btn btn-danger', data-dismiss='modal') Close
+  // modal ends--------------------------
+
+  //line table starts--------------------
+  table.table.table-striped.table-hover.table-bordered.table-responsive-lg
+    tr
+      th LineId
+      th LineName
+      th Width
+      th Height
+      th LineDirection
+      th Lane
+      th Type
+      th Edit
+      th Delete
+    each data in result
+      tr
+        td=data.lineId
+        td=data.lineName
+        td=data.width
+        td=data.height
+        td=data.lineDirection
+        td=data.lane
+        td=data.type
+        td 
+          button(class='btn btn-success', value=data.lineId, onclick="getLine(this.value)", data-toggle='modal', data-target='#updateLineModal') &#x270f;
+        td 
+          a(href="/line/delete/"+data.lineId class='btn btn-danger') &#xe107;
+  //line table ends----------------------
+  
