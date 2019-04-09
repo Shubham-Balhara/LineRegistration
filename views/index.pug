@@ -1,6 +1,20 @@
 extends layout
-
+block headContent
+  link(rel="stylesheet", href="stylesheets/index.css")
+  script(src="javascripts/index.js", type='text/javascript')
 block content
-  h1= title
-  p Welcome to #{title}
-  a(href="/line") Line
+  .container
+    input(type="text", id="total", value=total, hidden)
+    input(type="text", id="real", value=real, hidden)
+    input(type="text", id="virtual", value=virtual, hidden)
+    .row
+      .col-md-3
+        .progress
+          svg.progress-circle(width='200px' height='200px')
+            circle.progress-circle-back(cx='80' cy='80' r='74')
+            circle.progress-circle-prog(cx='80' cy='80' r='74')
+          .progress-text(data-progress='0') 0
+        h4 Total
+
+  
+

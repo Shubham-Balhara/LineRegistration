@@ -1,0 +1,115 @@
+extends layout
+block headContent
+  link(rel="stylesheet", href="/stylesheets/profile.css")
+  script(src="/javascripts/profile.js", type='text/javascript')
+
+block content
+  //edit profile modal -------------------------------
+  div(class='modal', id='editProfileModal')
+    div.modal-dialog
+      .modal-content
+        div.modal-header
+          h4.modal-title Edit Profile
+          button(type='button', class='close', data-dismiss='modal') &times;
+        
+        .modal-body
+          form(action="editProfile", method='post',name='form1', id='form1', onsubmit="return validateForm(this.name)")
+            .form-group
+              label(for="username") Username: 
+              input(type="text", name="username", class='form-control', required, value=USER.username)
+              div
+                p(id='form1username', class='text-danger')
+            .form-group
+              label(for="mobile") Mobile: 
+              input(type="text", name="mobile", class='form-control', maxlength='10', required, value=USER.mobile)
+              div
+                p(id='form1mobile', class='text-danger')
+            .form-group
+              label(for="email") Email: 
+              input(type="text", name="email", class='form-control', required, value=USER.email)
+              div
+                p(id='form1email', class='text-danger')
+            
+            input(type="submit", value="Submit" class='btn btn-success mr-3')
+            input(type="reset", value="Reset" class='btn btn-warning')
+
+        .modal-footer
+          button(type='button', class='btn btn-danger', data-dismiss='modal') Close
+
+  //update password modal --------------------
+  div(class='modal', id='updatePasswordModal')
+    div.modal-dialog
+      .modal-content
+        div.modal-header
+          h4.modal-title Update Password
+          button(type='button', class='close', data-dismiss='modal') &times;
+        
+        .modal-body
+          form(action="updatePassword", method='post',name='form2')
+            .form-group
+              label(for="oldPassword") Old Password: 
+              input(type="password", name="oldPassword", id='oldPassword', class='form-control', required, maxlength='14')
+              div
+                p(id='form2oldPassword', class='text-danger')
+            .form-group
+              label(for="newPassword") New Password: 
+              input(type="password", name="newPassword", id='newPassword', class='form-control', maxlength='14', required, onkeyup='check()')
+              div
+                p(id='form2newPassword', class='text-danger')
+            .form-group
+              label(for="confirmPassword") Confirm Password: 
+              input(type="password", name="confirmPassword", id='confirmPassword', class='form-control', required, onkeyup='check()')
+              div
+                p(id='form2confirmPassword', class='text-danger')
+            input(type="submit",id='btnSubmit', value="Submit" class='btn btn-success mr-3', disabled)
+            input(type="reset", value="Reset" class='btn btn-warning')
+
+        .modal-footer
+          button(type='button', class='btn btn-danger', data-dismiss='modal') Close
+  
+  .container.emp-profile
+    form(method='post')
+      .row
+        .col-md-4
+          .profile-img
+            img(src='/images/user.png' alt='user', height='220',width='220')
+            
+        .col-md-5
+          .profile-head
+            h4=USER.username
+            h6 Admin of This Site
+            ul#myTab.nav.nav-tabs(role='tablist')
+              li.nav-item
+                a#home-tab.nav-link.active(data-toggle='tab' href='#home' role='tab' aria-controls='home' aria-selected='true') Details
+        .col-md-3
+          button.profile-edit-btn(type='button' data-toggle='modal' data-target='#editProfileModal') Edit profile
+          br
+          br
+          button.profile-edit-btn(type='button' data-toggle='modal' data-target='#updatePasswordModal') Update password
+      .row
+        .col-md-4
+        .col-md-8
+          #myTabContent.tab-content.profile-tab
+            #home.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='home-tab')
+              .row
+                .col-md-6
+                  label User Name
+                .col-md-6
+                  p=USER.username
+              .row
+                .col-md-6
+                  label Mobile
+                .col-md-6
+                  p=USER.mobile
+              .row
+                .col-md-6
+                  label Email
+                .col-md-6
+                  p=USER.email
+              .row
+                .col-md-6
+                  label Profession
+                .col-md-6
+                  p Admin
+            
+  

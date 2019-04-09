@@ -2,6 +2,13 @@ var lineModel = require('../models/line');
 var Sequelize = require('sequelize');
 
 exports.index = function(req,res){
+    if(USER == null)
+        res.redirect('/users');
+    if(MSG ==null || MSG.alert>1){
+        MSG = null;
+    }else{
+        MSG.alert = 2;
+    }
     var line = lineModel(sequelize,Sequelize);
     line.findAll().then((list)=>{
         res.render('lineIndex',{title:'List Index',result:list});
@@ -9,6 +16,8 @@ exports.index = function(req,res){
 }
 
 exports.add = function(req,res){
+    if(USER == null)
+        res.redirect('/users');
     var line = lineModel(sequelize,Sequelize);
     var lineId = req.body.lineId;
     var lineName = req.body.lineName;
@@ -20,20 +29,28 @@ exports.add = function(req,res){
     line.create({lineId:lineId,lineName:lineName,width:width,height:height,lineDirection:lineDirection,lane:lane,type:type})
     .then(()=>{
         console.log("line added success");
+        MSG = {value:'Line added successfully !',alert:1};
+        res.redirect('/line');
     }).catch(err=>{
         console.log("failed to add line "+err);
+        MSG = {value:'Failed to add Line !',alert:1};
+        res.redirect('/line');
     });
-    res.redirect('/line');
 }
 
 exports.delete = function(req,res){
+    if(USER == null)
+        res.redirect('/users');
     var id = req.params.id;
     var line = lineModel(sequelize,Sequelize);
     line.destroy({ where:{ lineId:id } });
+    MSG = {value:'Line deleted successfully !',alert:1};
     res.redirect('/line');
 }
 
 exports.edit = function(req,res){
+    if(USER == null)
+        res.redirect('/users');
     var id = req.params.id;
     var line = lineModel(sequelize,Sequelize);
     line.findOne({ where:{ lineId:id } }).then(result=>{
@@ -42,8 +59,10 @@ exports.edit = function(req,res){
         res.end(JSON.stringify(j));
     });
 }
-
+ 
 exports.lineEdit = function(req,res){
+    if(USER == null)
+        res.redirect('/users');
     var line = lineModel(sequelize,Sequelize);
     var lineId = req.body.lineId;
     var lineName = req.body.lineName;
@@ -61,6 +80,6 @@ exports.lineEdit = function(req,res){
         lane:lane,
         type:type
     },{ where:{ lineId:lineId } });
-    
+    MSG = {value:'Line edited successfully !',alert:1};
     res.redirect('/line');
 }

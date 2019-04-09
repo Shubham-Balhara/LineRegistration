@@ -12,3 +12,7 @@ function toggleNav() {
         type = 'open';
     }
   }
+
+  function valid(){
+      alert(document.getElementById('user').value);
+  }

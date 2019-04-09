@@ -1,21 +1,56 @@
+doctype html
 html
-    head
-        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
-        script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
-        script(type='text/javascript', src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
-    body
-        .container
-            h1=title
-            form(action="users/login", method='post',name='form1', onsubmit="return validateForm(this.name)")
-                .form-group
-                label(for="username") Username: 
-                input(type="text", name="username", class='form-control', required)
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/login.css')
+    link(rel="stylesheet", href="stylesheets/notify.css")
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
+    script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(type='text/javascript', src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+  body
+    if MSG
+      .alert.alert-danger.alert-dismissible.fixed-top
+        a.close(href='#' data-dismiss='alert' aria-label='close') &times;
+        div#msgbox=MSG.value
+
+    //forgot password modal --------------------
+    div(class='modal', id='forgotPasswordModal')
+      div.modal-dialog
+        .modal-content
+          div.modal-header
+            h4.modal-title Retrieve Password
+            button(type='button', class='close', data-dismiss='modal') &times;
+          
+          .modal-body
+            form(action="users/retrivePassword", method='post',name='form1')
+              .form-group
+                label(for="email") Email: 
+                input(type="text", name="email", id='email', class='form-control', required)
                 div
-                    p(id='form1username', class='text-danger')
-                .form-group
-                label(for="password") Password: 
-                input(type="password", name="password", class='form-control', required)
-                div
-                    p(id='form1password', class='text-danger')
-                input(type="submit", value="Submit" class='btn btn-success mr-3')
-                input(type="reset", value="Reset" class='btn btn-warning')
+                  p(id='form1email', class='text-danger')
+              input(type="submit", value="Submit" class='btn btn-success mr-3')
+              input(type="reset", value="Reset" class='btn btn-warning')
+
+          .modal-footer
+            button(type='button', class='btn btn-danger', data-dismiss='modal') Close
+
+    .container
+      .row
+        .col-sm-9.col-md-7.col-lg-5.mx-auto
+          .card.card-signin.my-5
+            .card-body
+              h5.card-title.text-center Sign In
+              form.form-signin(action='users/login' method='post')
+                .form-label-group
+                  input#Username.form-control(type='text' placeholder='Username' required='' autofocus='' name='username')
+                  label(for='Username') Username
+                .form-label-group
+                  input#inputPassword.form-control(type='password' placeholder='Password' required='' name='password')
+                  label(for='inputPassword') Password
+                .custom-control.custom-checkbox.mb-3
+                  input#customCheck1.custom-control-input(type='checkbox' name='remember')
+                  label.custom-control-label(for='customCheck1') Remember password
+                button.btn.btn-lg.btn-primary.btn-block.text-uppercase(type='submit') Sign in
+                hr.my-4
+                button.btn.btn-lg.btn-danger.btn-block.text-uppercase(type='button' data-toggle='modal' data-target='#forgotPasswordModal')
+                  |  Forgot password
