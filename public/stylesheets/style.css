@@ -1,54 +1,39 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  font-family: "Lato", sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
-
-
 .sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 200px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  margin-top: -50px;
   left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
+  background-color: #1d1f22; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 85px;
+  padding-left: 20px
 }
 
+/* The navigation menu links */
 .sidenav a {
-  padding: 8px 8px 8px 32px;
+  padding: 6px 8px 6px 16px;
   text-decoration: none;
-  font-size: 25px;
-  color: #818181;
+  font-size: 18px;
+  color: #ade3eb;
   display: block;
-  transition: 0.3s;
 }
 
+/* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
   color: #f1f1f1;
+  text-decoration: #fff;
 }
 
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+/* Style page content */
+.main {
+  margin-left: 200px; /* Same as the width of the sidebar */
+  margin-top: 80px;
 }
 
-#main {
-  transition: margin-left .5s;
-  padding: 16px;
-}
-
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
+  .sidenav {padding-top: 105px;}
   .sidenav a {font-size: 18px;}
+  .main{ margin-top: 100px; }
 }

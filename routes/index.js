@@ -5,8 +5,10 @@ var Sequelize = require('sequelize');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if(USER == null)
+  if(USER == null){
+    MSG = {value:'You must login first !',alert:1};
     res.redirect('/users');
+  }
   else{
     if(MSG ==null || MSG.alert>1){
       MSG = null;

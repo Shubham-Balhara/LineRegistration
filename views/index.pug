@@ -6,15 +6,39 @@ block content
   .container
     input(type="text", id="total", value=total, hidden)
     input(type="text", id="real", value=real, hidden)
-    input(type="text", id="virtual", value=virtual, hidden)
-    .row
-      .col-md-3
-        .progress
-          svg.progress-circle(width='200px' height='200px')
-            circle.progress-circle-back(cx='80' cy='80' r='74')
-            circle.progress-circle-prog(cx='80' cy='80' r='74')
-          .progress-text(data-progress='0') 0
-        h4 Total
+    input(type="text", id="virtual", value=virtual, hidden)  
+    .emp-profile
+      .row
+        .col-md-1
+        .col-md-3
+          h5(align='center') Total
+          hr
+        .col-md-3
+          h5(align='center') Real
+          hr
+        .col-md-3
+          h5(align='center') Virtual
+          hr
+      .row
+        .col-md-1
+        .col-md-3
+          .progress
+            svg.progress-circle(width='220px' height='220px')
+              circle.progress-circle-back(cx='85' cy='85' r='74')
+              circle.progress-circle-prog#circle1(cx='85' cy='85' r='74')
+            .progress-text(data-progress=total) #{total}
+        .col-md-3
+          .progress
+            svg.progress-circle(width='220px' height='220px')
+              circle.progress-circle-back(cx='85' cy='85' r='74')
+              circle.progress-circle-prog1#circle2(cx='85' cy='85' r='74')
+            .progress-text(data-progress=real) #{real}
+        .col-md-3
+          .progress
+            svg.progress-circle(width='220px' height='220px')
+              circle.progress-circle-back(cx='85' cy='85' r='74')
+              circle.progress-circle-prog2#circle3(cx='85' cy='85' r='74')
+            .progress-text(data-progress=virtual) #{virtual}
 
   
 

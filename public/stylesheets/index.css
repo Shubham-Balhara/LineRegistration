@@ -1,43 +1,78 @@
 * {
 	margin: 0;
 	padding: 0;
-	font-family: 'Lato', sans-serif;
+}
+body{
+    background: -webkit-linear-gradient(left, #111, #273244);
 }
 
-.progress {
-	position: absolute;   
-	height: 160px;
-	width: 160px;
+.progress {   
+	height: 220px;
+	width: 220px;
+	margin-left: -10px;
 	cursor: pointer;
-	top: 50%;
-	left: 50%;
-	margin: -80px 0 0 -80px;
+	background-color:  #fff;
 }
 
 .progress-circle {
 transform: rotate(-90deg);
-margin-top: -40px;
+margin-top: -30px;
+margin-left: 40px;
 }
 
 .progress-circle-back {
 fill: none; 
-stroke: #D2D2D2;
-stroke-width:10px;
+stroke: rgba(214, 213, 212, 0.5);
+stroke-width:15px;
 }
 
 .progress-circle-prog {
 fill: none; 
-stroke: #7E3451;
-stroke-width: 10px;  
+stroke: rgb(27, 5, 150);
+stroke-width: 16px;  
 stroke-dasharray: 0 999;    
 stroke-dashoffset: 0px;
 	transition: stroke-dasharray 0.7s linear 0s;
+}
+
+.progress-circle-prog1 {
+	fill: none; 
+	stroke: rgb(27, 5, 150);
+	stroke-width: 16px;  
+	stroke-dasharray: 0 999;    
+	stroke-dashoffset: 0px;
+		transition: stroke-dasharray 0.7s linear 0s;
+}
+
+.progress-circle-prog2 {
+	fill: none; 
+	stroke: rgb(27, 5, 150);
+	stroke-width: 16px;  
+	stroke-dasharray: 0 999;    
+	stroke-dashoffset: 0px;
+		transition: stroke-dasharray 0.7s linear 0s;
 }
 
 .progress-text {
 width: 100%;
 position: absolute;
 top: 60px;
+margin-left: -10px;
 text-align: center;
-font-size: 2em;
+font-size: 3em;
+font-family: cursive;
+}
+
+hr {
+	height: 10px;
+	border: 0;
+	box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+
+.emp-profile{
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
 }

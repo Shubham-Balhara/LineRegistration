@@ -10,11 +10,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       width:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL(10,4),
         allowNull: false,
       },
       height:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.DECIMAL,
         allowNull: false,
       },
       lineDirection:{

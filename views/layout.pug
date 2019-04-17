@@ -3,38 +3,33 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel="stylesheet", href="stylesheets/notify.css")
+    link(rel="stylesheet", href="/stylesheets/notify.css")
     script(type='text/javascript', src="/javascripts/base.js")
+    link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet")
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
     script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
     script(type='text/javascript', src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
     block headContent
   body
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.justify-content-between.fixed-top
+      a.navbar-brand(href='/') YAMAHA
+      div()
+        ul(class='nav navbar-nav navbar-right')
+          li.nav-item.active
+            a.nav-link(href='/users/profile')
+              | &#xe009; Profile
+          li.nav-item
+            a.nav-link(href='/users/logout') &#xe017; Logout
     if MSG
-      .alert.alert-info.alert-dismissible
-        a.close(href='#' data-dismiss='alert' aria-label='close') &times;
-        div#msgbox=MSG.value
+      div#noty-holder
+        .alert.alert-info.alert-dismissible
+          a.close(href='#' data-dismiss='alert' aria-label='close') &times;
+          div#msgbox=MSG.value
 
-    nav(class="navbar navbar-expand-lg navbar-light bg-light fixed-top navbar-dark bg-dark")
-      a(class="navbar-brand", href="/") YAMAHA
-      //button(class="navbar-toggler", type="button", data-toggle="collapse", data-target="#navbarSupportedContent", aria-controls="navbarSupportedContent", aria-expanded="false", aria-label="Toggle navigation")
-      //span(class="navbar-toggler-icon")
-      div(class="collapse navbar-collapse", id="navbarSupportedContent")
-      ul(class='nav navbar-nav navbar-right')
-        if USER
-          li(class="nav-item active")
-            a(class="nav-link", href="/users/profile") Profile
-          li(class="nav-item")
-            a(class="nav-link", href="/users/logout") Logout
-        else
-          li(class="nav-item")
-            a(class="nav-link", href="/users") Login
-
-    div.container-fluid
-      div(id='mySidenav', class='sidenav')
-        a(href="javascript:void(0)", class="closebtn", onclick="closeNav()") &times;
-        a(href="/") Home
-        a(href="/line") Line
-      div(id='main')
-        span(style="font-size:30px;cursor:pointer;color:#52bfdd;", onclick="toggleNav()") &#9776;
+    div.container.my-5
+      div.sidenav   
+        a(href="/") &#x2601; Home
+        a(href="/line") &#xe151; Line
+      div(class='main',id="main")
         block content
+          

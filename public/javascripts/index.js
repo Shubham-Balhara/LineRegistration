@@ -1,18 +1,15 @@
 function fun() {
-    var rand = document.getElementById('total').value;
-      var x = document.querySelector('.progress-circle-prog');
-    x.style.strokeDasharray = (rand * 4.65) + ' 999';
-      var el = document.querySelector('.progress-text'); 
-      var from = $('.progress-text').data('progress');
-      $('.progress-text').data('progress', rand);
-      var start = new Date().getTime();
-      setTimeout(function() {
-          var now = (new Date().getTime()) - start;
-          var progress = now / 700;
-            result = rand > from ? Math.floor((rand - from) * progress + from) : Math.floor(from - (from - rand) * progress);
-          el.innerHTML = result;
-          if (progress < 1) setTimeout(arguments.callee, 10);
-      }, 10);
+    var val = document.getElementById('total').value;
+    var x = document.querySelector('.progress-circle-prog');
+    x.style.strokeDasharray = (val * 10) + ' 999';
+
+    var val1 = document.getElementById('real').value;
+    var x = document.querySelector('.progress-circle-prog1');
+    x.style.strokeDasharray = (val1 * 10) + ' 999';
+
+    var val2 = document.getElementById('virtual').value;
+    var x = document.querySelector('.progress-circle-prog2');
+    x.style.strokeDasharray = (val2 * 10) + ' 999';
   }
   
-  setTimeout(fun, 200);
+setTimeout(fun, 200);

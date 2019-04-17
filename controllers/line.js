@@ -2,8 +2,10 @@ var lineModel = require('../models/line');
 var Sequelize = require('sequelize');
 
 exports.index = function(req,res){
-    if(USER == null)
+    if(USER == null){
+        MSG = {value:'You must login first !',alert:1};
         res.redirect('/users');
+    }else{
     if(MSG ==null || MSG.alert>1){
         MSG = null;
     }else{
@@ -14,10 +16,14 @@ exports.index = function(req,res){
         res.render('lineIndex',{title:'List Index',result:list});
     });
 }
+}
 
 exports.add = function(req,res){
-    if(USER == null)
+    if(USER == null){
+        MSG = {value:'You must login first !',alert:1};
         res.redirect('/users');
+      }
+      else{
     var line = lineModel(sequelize,Sequelize);
     var lineId = req.body.lineId;
     var lineName = req.body.lineName;
@@ -30,27 +36,37 @@ exports.add = function(req,res){
     .then(()=>{
         console.log("line added success");
         MSG = {value:'Line added successfully !',alert:1};
-        res.redirect('/line');
+        setTimeout(() => {
+            res.redirect('/line');
+        }, 100);
     }).catch(err=>{
         console.log("failed to add line "+err);
-        MSG = {value:'Failed to add Line !',alert:1};
+        MSG = {value:'Line already exist !',alert:1};
         res.redirect('/line');
     });
 }
+}
 
 exports.delete = function(req,res){
-    if(USER == null)
+    if(USER == null){
+        MSG = {value:'You must login first !',alert:1};
         res.redirect('/users');
+      }else{
     var id = req.params.id;
     var line = lineModel(sequelize,Sequelize);
     line.destroy({ where:{ lineId:id } });
     MSG = {value:'Line deleted successfully !',alert:1};
-    res.redirect('/line');
+    setTimeout(() => {
+        res.redirect('/line');
+    }, 100);
+    }
 }
 
 exports.edit = function(req,res){
-    if(USER == null)
+    if(USER == null){
+        MSG = {value:'You must login first !',alert:1};
         res.redirect('/users');
+      }else{
     var id = req.params.id;
     var line = lineModel(sequelize,Sequelize);
     line.findOne({ where:{ lineId:id } }).then(result=>{
@@ -59,10 +75,13 @@ exports.edit = function(req,res){
         res.end(JSON.stringify(j));
     });
 }
+}
  
 exports.lineEdit = function(req,res){
-    if(USER == null)
+    if(USER == null){
+        MSG = {value:'You must login first !',alert:1};
         res.redirect('/users');
+      }else{
     var line = lineModel(sequelize,Sequelize);
     var lineId = req.body.lineId;
     var lineName = req.body.lineName;
@@ -82,4 +101,5 @@ exports.lineEdit = function(req,res){
     },{ where:{ lineId:lineId } });
     MSG = {value:'Line edited successfully !',alert:1};
     res.redirect('/line');
+}
 }

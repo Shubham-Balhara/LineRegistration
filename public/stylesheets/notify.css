@@ -8,19 +8,8 @@
 }
 
 .alert{
-    margin-bottom: 2px;
+    margin-top: 10%px;
+    position: fixed;
     border-radius: 0px;
     z-index:2;
-}
-
-#main{
-    min-height:900px;
-}
-
-body {
-  padding-top: 50px;
-}
-.starter-template {
-  padding: 40px 15px;
-  text-align: center;
 }
