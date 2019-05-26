@@ -8,12 +8,11 @@ exports.login = function(req,res){
   var password = req.body.password;
   //var user = userModel(sequelize,Sequelize);
   //user.findOne({where:{username:username}}).then(user=>{
-    if(false){
-      MSG = {value:'Please, Enter correct Username and password !',alert:1};
-      res.redirect('/users');
-    }else{
+    if(username=="root"&& password=="Sbalhara1234"){
       USER.username = "shubham";
       USER.password = "1234";
+      USER.modil = "9810596976";
+      USER.email = "sbalhara007@gmail.com";
       MSG = {value:'Logged in successfully !',alert:1};
       res.redirect('/');
     }
