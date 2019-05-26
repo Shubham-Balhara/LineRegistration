@@ -15,10 +15,10 @@ exports.login = function(req,res){
       USER.email = "sbalhara007@gmail.com";
       MSG = {value:'Logged in successfully !',alert:1};
       res.redirect('/');
-    }
+    }/*
   }).catch(err=>{
     console.log("error occured: "+err);
-  });
+  });*/
 }
 
 exports.register = function(req,res){
