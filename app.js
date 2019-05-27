@@ -11,7 +11,7 @@ var lineRouter = require('./routes/line');
 
 var app = express();
 
-sequelize = new Sequelize('postgres://postgres:root@localhost:5432/postgres');
+sequelize = new Sequelize('kezpfpn:395527be98e9594410d942ee3623c5d874a1a6bfae1dc26828b5ec3ee4a7d93f@ec2-184-72-237-95.compute-1.amazonaws.com:5432/dc3sendh1as666');
 
   sequelize.authenticate().then(() => {
     console.log("Database connection success......");
